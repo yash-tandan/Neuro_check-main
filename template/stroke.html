@@ -1,0 +1,182 @@
+<html>
+
+<head>
+    {% block head %}
+    <title>Patient Details</title>
+    <style>
+        body {
+
+            background-color: rgb(161, 224, 235);
+            background-attachment: scroll;
+
+            font-family: Arial, Helvetica, sans-serif;
+            padding: 20px;
+
+        }
+
+
+
+
+        .form-style {
+            background: #f1f1f1;
+            border: 1px solid #ccc;
+            padding: 10px;
+            box-shadow: 0 0 5px 0 #ddd;
+            width: 400px;
+            margin: auto;
+        }
+
+        .form-style h2 {
+            font-size: 20px;
+            font-weight: bold;
+            padding-bottom: 10px;
+            margin: 0;
+            text-align: center;
+            color: #666;
+        }
+
+        .form-style label {
+            font-weight: bold;
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        .form-style input[type="text"],
+        .form-style select {
+            box-sizing: border-box;
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            outline: none;
+            display: block;
+            width: 100%;
+            padding: 7px;
+            border: none;
+            border-bottom: 1px solid #ddd;
+            background: transparent;
+            margin-bottom: 20px;
+            font: 16px Arial, Helvetica, sans-serif;
+            height: 45px;
+        }
+
+        .form-style input[type="submit"] {
+            box-sizing: border-box;
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            outline: none;
+            display: block;
+            width: 100%;
+            padding: 7px;
+            border: none;
+            background: #7ac142;
+            color: #fff;
+            font-weight: bold;
+            font-size: 18px;
+            cursor: pointer;
+        }
+
+        .form-style input[type="submit"]:hover {
+            background: #4ca841;
+        }
+
+        .risk-level-meter {
+            width: 100%;
+        }
+
+        .risk-level-indicator {
+            height: 20px;
+            background-color: green;
+            width: 50%;
+        }
+
+        .risk-level-medium {
+            background-color: yellow;
+        }
+
+        .risk-level-high {
+            background-color: red;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div style="display: flex; justify-content: center; align-items: center; background-color: #0a46044f;">
+        <h1>AI Stroke Prediction</h1>
+    </div>
+
+    <div style="display: flex; justify-content: center; align-items: center">
+        <h3>Our project takes your input values and our AI model process it and tells that whether their is a chance of
+            coming Stroke or not. </h3>
+    </div>
+
+    <div id="barometer"></div>
+    <div class="form-style">
+        <h2>Patient Details</h2>
+        <p class="text-danger" style="color: #4ca841;"><b>{{prediction_text}}</b></p>
+        <form name="myForm" action="/predict" onsubmit="return validateForm()" method="post">
+
+            <label>Gender</label>
+            <select name="gender">
+                <option value="">Select Gender</option>
+                <option value="1">Male</option>
+                <option value="0">Female</option>
+            </select>
+            <label>Age</label>
+            <input type="text" name="age" />
+            <label>Hypertension</label>
+            <select name="hypertension">
+                <option value="">Select</option>
+                <option value="1">Yes</option>
+                <option value="0">No</option>
+            </select>
+            <label>Heart Disease</label>
+            <select name="heart_disease">
+                <option value="">Select</option>
+                <option value="1">Yes</option>
+                <option value="0">No</option>
+            </select>
+            <label>Ever Married</label>
+            <select name="married">
+                <option value="">Select</option>
+                <option value="Yes">Yes</option>
+                <option value="No">No</option>
+            </select>
+            <label>Work Type</label>
+            <select name="work">
+                <option value="">Select Work Type</option>
+                <option value="Self-employed">Self-employed</option>
+                <option value="Private">Private</option>
+                <option value="children">children</option>
+                <option value="Govt_job">Government Job</option>
+                <option value="Never_worked">Never_worked</option>
+            </select>
+            <label>Residence Type</label>
+            <select name="residence">
+                <option value="">Select Residence Type</option>
+                <option value="Rural">Rural</option>
+                <option value="Urban">Urban</option>
+            </select>
+            <label>Avg Glucose Level</label>
+            <input type="text" name="glucose" />
+            <label>BMI</label>
+            <input type="text" name="bmi" />
+            <label>Smoking Status</label>
+            <select name="smoking">
+                <option value="">Select Smoking Status</option>
+                <option value="Never smoked">Never smoked</option>
+                <option value="formerly smoked">Formerly smoked</option>
+                <option value="smokes">Smokes</option>
+            </select>
+            <label>Stroke</label>
+
+            <input type="submit" value="Predict" />
+        </form>
+    </div>
+    {% endblock %}
+
+
+</body>
+
+
+
+</html>
